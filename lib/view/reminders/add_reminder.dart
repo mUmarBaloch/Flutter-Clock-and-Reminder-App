@@ -1,3 +1,5 @@
+import 'package:clock_app/controller/local_db.dart';
+import 'package:clock_app/controller/reminder_controller.dart';
 import 'package:clock_app/model/reminder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -24,13 +26,8 @@ class AddReminder extends StatelessWidget {
                       .addReminders(
                           id: ReminderController().reminders.length,
                           minutes: int.parse(controller.text));
-                  // await FlutterLocalNotificationsPlugin().schedule(
-                  //     ReminderController().reminders.length,
-                  //     'reminder',
-                  //     '${controller.text} minutes reminder',
-                  //     DateTime.now()
-                  //         .add(Duration(minutes: int.parse(controller.text))),
-                  //     notificationDetails);
+                  LocalDb().addData();
+
                   Navigator.pop(context);
                 },
                 icon: Icon(Icons.send)),

@@ -5,14 +5,10 @@ class Reminder {
   final int? minutes;
 
   Reminder({required this.id, required this.minutes});
-}
 
-List<Reminder> _reminders = [];
+  Reminder.fromMap(Map map)
+      : this.id = map['id'],
+        this.minutes = map['minutes'];
 
-class ReminderController extends ChangeNotifier {
-  List<Reminder> get reminders => _reminders;
-  void addReminders({required int id, required int minutes}) {
-    _reminders.add(Reminder(id: id, minutes: minutes));
-    notifyListeners();
-  }
+  toMap() => {'id': this.id, 'minutes': this.minutes};
 }

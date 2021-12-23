@@ -1,4 +1,5 @@
 // @dart=2.9
+import 'package:clock_app/controller/reminder_controller.dart';
 import 'package:clock_app/model/reminder_model.dart';
 import 'package:clock_app/view/reminders/add_reminder.dart';
 import 'package:clock_app/view/reminders/reminder_card.dart';
@@ -17,8 +18,11 @@ class Reminders extends StatelessWidget {
         child: Consumer<ReminderController>(
           builder: (context, data, child) => ListView(
             children: [
-              ...data.reminders.map((reminder) =>
-                  reminderCard(id: reminder.id, minutes: reminder.minutes)),
+              ...data.reminders.map((reminder) => reminderCard(
+                    context: context,
+                    id: reminder.id,
+                    minutes: reminder.minutes,
+                  )),
               Container(
                 padding: EdgeInsets.all(12),
                 alignment: Alignment.bottomRight,

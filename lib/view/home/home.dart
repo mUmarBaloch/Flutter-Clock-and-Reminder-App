@@ -1,4 +1,5 @@
 // @dart=2.9
+import 'package:clock_app/controller/reminder_controller.dart';
 import 'package:clock_app/model/reminder_model.dart';
 import 'package:clock_app/view/reminders/reminder_card.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +43,14 @@ class Home extends StatelessWidget {
                 children: ReminderController().reminders.length > 0
                     ? [
                         reminderCard(
+                            context: context,
+                            isReminderScreen: false,
                             id: ReminderController().reminders[0].id,
                             minutes: ReminderController().reminders[0].minutes),
                         if (ReminderController().reminders.length > 1)
                           reminderCard(
+                              context: context,
+                              isReminderScreen: false,
                               id: ReminderController().reminders[1].id,
                               minutes:
                                   ReminderController().reminders[1].minutes),

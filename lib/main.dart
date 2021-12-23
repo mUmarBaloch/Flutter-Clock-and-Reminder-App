@@ -1,24 +1,16 @@
 // @dart=2.9
 
+import 'package:clock_app/controller/local_db.dart';
 import 'package:clock_app/view/reminders/reminder.dart';
 import 'package:clock_app/view/stopwatch/stopwatch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'view/home/home.dart';
 
-var flutterLocalNotificationPlugin;
-var androidNotificationDetails;
-var notificationDetails;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  flutterLocalNotificationPlugin = FlutterLocalNotificationsPlugin();
-  const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
-  androidNotificationDetails = AndroidNotificationDetails('1', 'notify',
-      importance: Importance.max, priority: Priority.high, ticker: 'ticker');
-  notificationDetails =
-      NotificationDetails(android: androidNotificationDetails);
-  const initializationSettings = InitializationSettings(android: androidInit);
-  await flutterLocalNotificationPlugin.initialize(initializationSettings);
+  await LocalDb().initDb();
+  await LocalDb().loadData();
   runApp(MyApp());
 }
 
@@ -35,8 +27,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.deepPurpleAccent,
-      primarySwatch: Colors.deepPurple),
+      theme: ThemeData(
+          primaryColor: Colors.deepPurpleAccent,
+          primarySwatch: Colors.deepPurple),
       home: Scaffold(
         backgroundColor: Colors.grey[900],
         body: SafeArea(child: screens[index]),
