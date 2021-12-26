@@ -39,45 +39,46 @@ class Home extends StatelessWidget {
             Text('reminders', style: TextStyle(color: Colors.white))
           ],
         ),
-        Container(
-            height: 220,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Column(
-                children: ReminderController().reminders.length > 0
-                    ? [
-                        reminderCard(
-                            context: context,
-                            title: ReminderController().reminders[0].title,
-                            isReminderScreen: false,
-                            id: ReminderController().reminders[0].id,
-                            minutes: ReminderController().reminders[0].minutes),
-                        if (ReminderController().reminders.length > 1)
+        Consumer<ReminderController>(
+          builder: (context, data, child) => Container(
+              height: 220,
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Column(
+                  children: data.reminders.length > 0
+                      ? [
                           reminderCard(
                               context: context,
-                              title: ReminderController().reminders[1].title,
+                              title: data.reminders[0].title,
                               isReminderScreen: false,
-                              id: ReminderController().reminders[1].id,
-                              minutes:
-                                  ReminderController().reminders[1].minutes),
-                      ]
-                    : [
-                        SizedBox(
-                          height: 100,
-                        ),
-                        Center(
-                          child: Icon(
-                            Icons.not_interested_rounded,
-                            color: Colors.deepPurpleAccent,
-                            size: 60,
+                              id: data.reminders[0].id,
+                              minutes: data.reminders[0].minutes),
+                          if (data.reminders.length > 1)
+                            reminderCard(
+                                context: context,
+                                title: data.reminders[1].title,
+                                isReminderScreen: false,
+                                id: data.reminders[1].id,
+                                minutes: data.reminders[1].minutes),
+                        ]
+                      : [
+                          SizedBox(
+                            height: 100,
                           ),
-                        ),
-                        Text('no reminders',
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                letterSpacing: 2,
-                                fontWeight: FontWeight.w100))
-                      ]))
+                          Center(
+                            child: Icon(
+                              Icons.not_interested_rounded,
+                              color: Colors.deepPurpleAccent,
+                              size: 60,
+                            ),
+                          ),
+                          Text('no reminders',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  letterSpacing: 2,
+                                  fontWeight: FontWeight.w100))
+                        ])),
+        )
       ],
     );
   }
