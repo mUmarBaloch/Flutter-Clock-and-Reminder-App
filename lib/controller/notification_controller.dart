@@ -1,10 +1,7 @@
 import 'package:clock_app/controller/reminder_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 var _flutterLocalNotificationPlugin;
-var _androidNotificationDetails;
-var _notificationDetails;
 
 class NotificationController {
   initNotification() async {
@@ -19,18 +16,19 @@ class NotificationController {
         importance: Importance.max, priority: Priority.high, ticker: 'ticker');
   }
 
-  addNotification(String title, int id) async {
-    var _time = DateTime.now().add(Duration(seconds: int.parse(title)));
+  addNotification(int minutes, int id, [String? title]) async {
+    var _time = DateTime.now().add(Duration(minutes: minutes));
     // ignore: deprecated_member_use
+
     await FlutterLocalNotificationsPlugin().schedule(
         id,
-        title,
-        'reminder from umar baloch',
+        '$minutes',
+        title ?? 'Reminder by Umar baloch',
         _time,
         NotificationDetails(android: androidNotificationDetails(id)));
   }
 
-  deleteNotification(int id) {
+  deleteNotification(int id) async {
     FlutterLocalNotificationsPlugin().cancel(id);
   }
 }

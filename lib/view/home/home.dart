@@ -1,13 +1,16 @@
 // @dart=2.9
 import 'package:clock_app/controller/reminder_controller.dart';
-import 'package:clock_app/model/reminder_model.dart';
 import 'package:clock_app/view/reminders/reminder_card.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'home_widgets.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Provider.of<ReminderController>(context, listen: false)
+    //     .deleteAfterDelievered();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

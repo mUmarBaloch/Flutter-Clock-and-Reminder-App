@@ -1,10 +1,13 @@
 // @dart=2.9
 
 import 'package:clock_app/controller/local_db.dart';
+import 'package:clock_app/controller/notification_controller.dart';
+import 'package:clock_app/controller/reminder_controller.dart';
+import 'package:clock_app/model/reminder_model.dart';
 import 'package:clock_app/view/reminders/reminder.dart';
 import 'package:clock_app/view/stopwatch/stopwatch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:provider/provider.dart';
 import 'view/home/home.dart';
 
 void main() async {
@@ -32,7 +35,9 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.deepPurple),
       home: Scaffold(
         backgroundColor: Colors.grey[900],
-        body: SafeArea(child: screens[index]),
+        body: ChangeNotifierProvider<ReminderController>(
+            create: (context) => ReminderController(),
+            child: SafeArea(child: screens[index])),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.deepPurple,
           currentIndex: index,

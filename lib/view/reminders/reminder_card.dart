@@ -7,6 +7,7 @@ Container reminderCard(
     {required BuildContext context,
     required int id,
     required int minutes,
+    String title = 'Remind me after :',
     isReminderScreen = true}) {
   return Container(
     margin: EdgeInsets.all(8),
@@ -17,7 +18,7 @@ Container reminderCard(
     ),
     child: ListTile(
       title: Text(
-        'Remind me after :',
+        '$title :',
         style: TextStyle(color: Colors.white),
       ),
       subtitle: Text('$minutes minutes', style: TextStyle(color: Colors.white)),
