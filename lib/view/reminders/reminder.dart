@@ -12,8 +12,8 @@ class Reminders extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Consumer<ReminderController>(builder: (context, data, child) {
-        // Provider.of<ReminderController>(context, listen: false)
-        //     .deleteAfterDelievered();
+        Provider.of<ReminderController>(context, listen: false)
+            .deleteAfterDelievered();
         return ListView(
           children: [
             ...data.reminders.map((reminder) => reminderCard(

@@ -9,8 +9,8 @@ import 'home_widgets.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Provider.of<ReminderController>(context, listen: false)
-    //     .deleteAfterDelievered();
+    Provider.of<ReminderController>(context, listen: false)
+        .deleteAfterDelievered();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
