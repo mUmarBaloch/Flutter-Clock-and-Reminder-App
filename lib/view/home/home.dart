@@ -47,12 +47,14 @@ class Home extends StatelessWidget {
                     ? [
                         reminderCard(
                             context: context,
+                            title: ReminderController().reminders[0].title,
                             isReminderScreen: false,
                             id: ReminderController().reminders[0].id,
                             minutes: ReminderController().reminders[0].minutes),
                         if (ReminderController().reminders.length > 1)
                           reminderCard(
                               context: context,
+                              title: ReminderController().reminders[1].title,
                               isReminderScreen: false,
                               id: ReminderController().reminders[1].id,
                               minutes:

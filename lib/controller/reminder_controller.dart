@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:isolate';
 
 import 'package:clock_app/controller/local_db.dart';
 import 'package:clock_app/controller/notification_controller.dart';
@@ -18,7 +19,11 @@ class ReminderController extends ChangeNotifier {
 
   void deleteReminder(id) {
     NotificationController().deleteNotification(id);
-    _reminders.removeAt(id);
+    if (reminders.length > 1) {
+      _reminders.removeAt(id);
+    } else {
+      _reminders.clear();
+    }
     LocalDb().addData();
     notifyListeners();
   }
